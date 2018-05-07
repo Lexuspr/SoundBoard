@@ -105,6 +105,12 @@
                                     <action selector="addTapped:" destination="xGu-HK-ils" eventType="touchDownRepeat" id="Ch1-ge-ap7"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duracion:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hj0-Fl-wR1">
+                                <rect key="frame" x="151" y="324" width="73.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -114,15 +120,18 @@
                             <constraint firstItem="p7m-MW-5X3" firstAttribute="leading" secondItem="Vfn-t4-6p9" secondAttribute="leadingMargin" constant="90" id="C3T-F5-Xzn"/>
                             <constraint firstItem="aWJ-9Q-NJK" firstAttribute="top" secondItem="zXZ-n7-9Dx" secondAttribute="bottom" constant="20" id="KxJ-5x-jVg"/>
                             <constraint firstItem="oSV-UU-sb9" firstAttribute="centerX" secondItem="Vfn-t4-6p9" secondAttribute="centerX" id="LmJ-B4-3MN"/>
+                            <constraint firstItem="Hj0-Fl-wR1" firstAttribute="top" secondItem="oSV-UU-sb9" secondAttribute="bottom" constant="20" id="OP0-PI-GbF"/>
                             <constraint firstItem="zXZ-n7-9Dx" firstAttribute="centerX" secondItem="Vfn-t4-6p9" secondAttribute="centerX" id="RGq-y1-cCV"/>
                             <constraint firstItem="p7m-MW-5X3" firstAttribute="top" secondItem="aWJ-9Q-NJK" secondAttribute="bottom" constant="20" id="SOz-2N-ubP"/>
                             <constraint firstItem="oSV-UU-sb9" firstAttribute="top" secondItem="p7m-MW-5X3" secondAttribute="bottom" constant="20" id="aJt-lU-Nwu"/>
+                            <constraint firstItem="Hj0-Fl-wR1" firstAttribute="centerX" secondItem="Vfn-t4-6p9" secondAttribute="centerX" id="e6i-jd-7Q7"/>
                             <constraint firstItem="aWJ-9Q-NJK" firstAttribute="centerX" secondItem="Vfn-t4-6p9" secondAttribute="centerX" id="hrF-Mp-dZB"/>
                             <constraint firstItem="M80-NA-HKo" firstAttribute="centerX" secondItem="Vfn-t4-6p9" secondAttribute="centerX" id="rwj-Tz-sJg"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addButton" destination="oSV-UU-sb9" id="qYa-jo-etV"/>
+                        <outlet property="lblDuracion" destination="Hj0-Fl-wR1" id="VdA-6U-zgt"/>
                         <outlet property="nameTextField" destination="p7m-MW-5X3" id="ls0-Uy-ZmC"/>
                         <outlet property="playButton" destination="aWJ-9Q-NJK" id="eYc-2m-dUg"/>
                         <outlet property="recordButton" destination="zXZ-n7-9Dx" id="BmX-fi-5R0"/>

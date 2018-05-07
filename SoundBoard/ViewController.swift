@@ -39,7 +39,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let sound = sounds[indexPath.row]
-        cell.textLabel?.text = sound.name
+        let temp = TimeInterval(Double(sound.tempo!)!)
+        let tiempo = timeString(time: temp)
+        cell.textLabel?.text = sound.name! + " " + tiempo
+        cell.detailTextLabel?.text = tiempo
         return cell
     }
 
@@ -63,6 +66,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 tableView.reloadData()
             } catch{}
         }
+    }
+    
+    func timeString(time:TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
     }
 
 

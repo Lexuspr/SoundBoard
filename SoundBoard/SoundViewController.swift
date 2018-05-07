@@ -11,6 +11,8 @@ import AVFoundation
 
 class SoundViewController: UIViewController {
 
+    @IBOutlet weak var lblDuracion: UILabel!
+    
     @IBOutlet weak var recordButton: UIButton!
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -22,6 +24,11 @@ class SoundViewController: UIViewController {
     var audioRecorder:AVAudioRecorder?
     var audioPlayer:AVAudioPlayer?
     var audioURL:URL?
+    
+    var timer = Timer()
+    var segundos = 0
+    var isTimerRunning = false
+    var tempo = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +68,20 @@ class SoundViewController: UIViewController {
             print(error)
         }
     }
+    
+    func runTimer(){
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(SoundViewController.updateTimer)), userInfo: nil, repeats: true)
+    }
+    func updateTimer() {
+        segundos += 1
+        lblDuracion.text = timeString(time: TimeInterval(segundos))
+    }
+    func timeString(time:TimeInterval) -> String {
+        let hours = Int(time) / 3600
+        let minutes = Int(time) / 60 % 60
+        let seconds = Int(time) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+    }
 
     @IBAction func recordTapped(_ sender: UIButton) {
         if audioRecorder!.isRecording{
@@ -70,12 +91,17 @@ class SoundViewController: UIViewController {
             recordButton.setTitle("Grabar", for: .normal)
             playButton.isEnabled = true
             addButton.isEnabled = true
+            timer.invalidate()
+            tempo = String(segundos)
         } else {
             //empezar a grabar
+            segundos = 0
+            lblDuracion.text = timeString(time: TimeInterval(segundos))
             audioRecorder?.record()
             //cambiar texto del boton grabar a detener
             recordButton.setTitle("Detener", for: .normal)
             playButton.isEnabled = false
+            runTimer()
         }
     }
     @IBAction func playTapped(_ sender: UIButton) {
@@ -89,6 +115,7 @@ class SoundViewController: UIViewController {
         let sound = Sound(context: context)
         sound.name = nameTextField.text
         sound.audio = NSData(contentsOf: audioURL!)
+        sound.tempo = tempo
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
         navigationController!.popViewController(animated: true)
     }
